@@ -1,39 +1,41 @@
 import cv2
 from gaze_tracking import GazeTracking
-from Show_video import VideoShow
-from video_get import VideoStream
+from datetime import datetime
 from fps import FPS
 import time
 
-print("start")
-vs = VideoStream().start()
-vs2= VideoShow(vs.frame).start()
-
-time.sleep(2.0)
 
 fps = FPS().start()
 t = time.time()
+
 gaze = GazeTracking()
 
-while (time.time()-t)<30 :
-   
-    frame = vs.frame
-    gaze.refresh(frame)
-    frame = gaze.annotated_frame()
-    key = cv2.waitKey(1) & 0xFF
+cap = cv2.VideoCapture(0) #0 est le numéro de périphérique de la caméra
 
-    vs2.frame = frame
+    
+while (time.time()-t)<30:
+    
+    
+    #ret obtient un indicateur de succès d'image
+    ret, frame = cap.read()
+    
+    key = cv2.waitKey(1)
+    gaze.refresh(frame)
+    
+    frame = gaze.annotated_frame()
+    
+    cv2.imshow("Demo", frame)
     
     fps.update()
     
-    if key == ord("q"):
+    k = cv2.waitKey(1) #Attendez 1 ms
+    if k == 27: #Quitter avec la touche ESC
         break
-
 
 fps.stop()
 print("Temps écoulé: {:.2f}".format(fps.elapsed()))
 print("Nombre de frame par seconde : {:.2f}".format(fps.fps()))
 
+#Libérez la capture
+cap.release()
 cv2.destroyAllWindows()
-vs.stop()
-
