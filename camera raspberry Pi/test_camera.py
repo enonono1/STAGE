@@ -1,7 +1,13 @@
 from picamera.array import PiRGBArray
 from picamera import PiCamera
+from fps import FPS
 import time
 import cv2
+
+# démare le compteur
+print("Start")
+
+fps = FPS().start()
 
 # initialisation des paramètres pour la capture
 camera = PiCamera()
@@ -19,8 +25,11 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     rawCapture.truncate(0)
              
     cv2.imshow("Demo", image)
-
+    
+    fps.update() 
+    
     # si la touche q du clavier est appuyée, on sort de la boucle
     if key == ord("q"):
         break
 
+cv2.destroyAllWindows()
