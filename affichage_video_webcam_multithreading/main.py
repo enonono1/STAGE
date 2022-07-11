@@ -1,4 +1,4 @@
-from pivideostream import VideoStream
+from Video_get import VideoStream
 from Show_video import VideoShow
 from fps import FPS
 import time
