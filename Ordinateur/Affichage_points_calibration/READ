@@ -1,0 +1,4 @@
+Le fichier affichage 5 points, affiche 5 points rouge dans une fênetre. Les Points sont disposés aux quatres coins de l'écran et le centre. 
+Le programme sert à afficher les points pour ensuite les fixer et pouvoir récupérer les coordonnées x et y de la pupille en fonction des coordonées de chaque points.
+
+Le deuxieme programme fonctionne pareille mais les points apparaissent les un après les autres , une fois que la fixation est fini.
