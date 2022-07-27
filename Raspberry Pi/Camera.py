@@ -23,3 +23,23 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     # si la touche q du clavier est appuyée, on sort de la boucle
     if key == ord("q"):
         break
+
+"""
+import time
+import picamera
+
+camera = picamera.PiCamera()
+
+try :
+    camera.start_preview()
+    #camera.start_recording('/home/pi/programme récupération données pour raspberry')
+    camera.brightness=60
+    time.sleep(5)
+    #camera.stop_recording()
+    camera.stop_preview()
+  
+finally :
+    camera.close()
+    
+    
+"""
